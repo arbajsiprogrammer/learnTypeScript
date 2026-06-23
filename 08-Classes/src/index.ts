@@ -39,4 +39,42 @@ console.log(obj.getSalary());
 // console.log(obj.salary) ;// Error : Property 'salary' is private and only accessible within class 'myClass'.
 
 
+// ******************* Abstract Class *******************************
 
+abstract class Animal {
+    constructor(){
+        console.log("Animal called");
+    }
+
+    sleep() {
+        console.log("Sleeping...");
+    }
+
+    abstract makeSound() : void ;
+}
+
+class Cat extends Animal{
+    constructor(){
+        super();
+    }
+
+    makeSound():void{
+        console.log("Cat is making sound...");
+    }
+
+}
+// const catObject:Cat = new Cat();
+// or
+const cat= new Cat();
+cat.makeSound();
+cat.sleep();
+
+class Dog extends Animal {
+    makeSound(): void {
+        console.log("Dog is making sound...");
+    }
+}
+
+const dog = new Dog();
+dog.makeSound();
+dog.sleep();

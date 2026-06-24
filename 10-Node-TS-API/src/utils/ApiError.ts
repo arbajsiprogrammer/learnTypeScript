@@ -1,5 +1,5 @@
 class ApiError extends Error {
-    statusCode:number ;
+    statusCode:number;
     errors:any[] ;
     success:boolean ;
     data:null ;

@@ -9,7 +9,6 @@ const connectDb:() => Promise<void> = async() =>{
         if(!URI){
             throw new ApiError(400, "URI undefined or null");
         }
-
         await mongoose.connect(URI);
 
         console.log("DB connected!!");

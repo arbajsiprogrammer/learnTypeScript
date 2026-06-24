@@ -9,7 +9,7 @@ import { IBook } from "../models/book.model";
 const getBooks = AsyncHandler(async(req:Request, res:Response)=>{
     const books =await getBooksService();
 
-    const response : ISuccessResponse = {res, statusCode:200, message:"data fetched", data: books}
+    const response : ISuccessResponse = {res, statusCode:200, message:"books fetched", data: books}
 
     return successResponse(response);    
 })
@@ -19,18 +19,18 @@ const getBookById = AsyncHandler(async(req:Request, res:Response)=>{
 
     const book =await getBookByIdService(id);
 
-    const response : ISuccessResponse = {res, statusCode:200, message:"data fetched", data: book}
+    const response : ISuccessResponse = {res, statusCode:200, message:"book fetched", data: book}
 
     return successResponse(response);    
 })
 
-const addBook = AsyncHandler(async(req:Request, res:Response)=>{
+const addBook = AsyncHandler(async (req:Request, res:Response) => {
 
     const body : Partial<IBook> = req.body;
 
     const book = await addBookService(body);
 
-    const response : ISuccessResponse = {res, statusCode:200, message:"data fetched", data: book}
+    const response : ISuccessResponse = {res, statusCode:201, message:"book created", data: book}
 
     return successResponse(response);    
 })
@@ -42,7 +42,7 @@ const updateBook = AsyncHandler(async(req:Request, res:Response)=>{
 
     const book = await updateBookService(id,body);
 
-    const response : ISuccessResponse = {res, statusCode:200, message:"data fetched", data: book}
+    const response : ISuccessResponse = {res, statusCode:200, message:"book updated", data: book}
 
     return successResponse(response);    
 })
@@ -52,7 +52,7 @@ const deleteBook = AsyncHandler(async(req:Request, res:Response)=>{
 
     const book =await deleteBookService(id);
 
-    const response : ISuccessResponse = {res, statusCode:200, message:"data fetched", data: book}
+    const response : ISuccessResponse = {res, statusCode:200, message:"book deleted", data: book}
 
     return successResponse(response);    
 })

@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express"
-import { FunctionDeclaration } from "typescript"
 
 type RequestHandler = (req : Request, res :Response, next:NextFunction) => Promise<any>;
 

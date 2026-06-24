@@ -1,6 +1,7 @@
 
 import { Book, IBook } from "../models/book.model";
 import { create, find, findById, findByIdAndDelete, findByIdAndUpdate } from "../repositories/common.repositories";
+import { ApiError } from "../utils/ApiError";
 
 const getBooksService = async()=>{
     const books = await find(Book);
@@ -9,23 +10,25 @@ const getBooksService = async()=>{
 
 
 const getBookByIdService = async(id:string)=>{
-    const books = await findById(Book,id);
-    return books;
+    
+    const book = await findById(Book,id);
+    return book;
 }
 
 
 const addBookService = async(body: Partial<IBook> )=>{
-    const books = await create(Book,body);
-    return books;
+    const book = await create(Book,body);
+    return book;
 }
 
 const updateBookService = async(id:string, body: Partial<IBook> )=>{
-    const books = await findByIdAndUpdate(Book,body, id);
-    return books;
+    const book = await findByIdAndUpdate(Book,body, id);
+    return book;
 }
 
 const deleteBookService = async(id:string)=>{
-    const books = await findByIdAndDelete(Book, id);
-    return books;
+    const book = await findByIdAndDelete(Book, id);
+    return book;
 }
+
 export{getBooksService, getBookByIdService, addBookService, updateBookService, deleteBookService}

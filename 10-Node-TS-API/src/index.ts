@@ -11,15 +11,15 @@ const app:Express = express();
 
 // middlewares
 app.use(cors())
-
+app.use(express.json())
 // route mounting
 app.use("/api/v1", apiRouter);
 
 connectDb();
+
 app.get("/", (req:Request, res:Response)=>{
     res.send("server is running");
 })
-
 
 // Global Error handler middleware
 app.use(errorMiddleware)

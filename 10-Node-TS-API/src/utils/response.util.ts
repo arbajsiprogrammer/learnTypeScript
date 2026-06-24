@@ -8,4 +8,15 @@ return res
 
 }
 
-export {successResponse}
+
+const errorResponse = (res:Response, statusCode :number, error:any):Response => {
+  
+  return res.status(statusCode).json({
+    success: false,
+    statusCode: statusCode,
+    message: error.message || error,
+    data: null,
+  });
+};
+
+export { successResponse, errorResponse };

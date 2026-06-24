@@ -1,6 +1,6 @@
 
 import { Book, IBook } from "../models/book.model";
-import { create, find, findById } from "../repositories/common.repositories";
+import { create, find, findById, findByIdAndDelete, findByIdAndUpdate } from "../repositories/common.repositories";
 
 const getBooksService = async()=>{
     const books = await find(Book);
@@ -19,5 +19,13 @@ const addBookService = async(body: Partial<IBook> )=>{
     return books;
 }
 
+const updateBookService = async(id:string, body: Partial<IBook> )=>{
+    const books = await findByIdAndUpdate(Book,body, id);
+    return books;
+}
 
-export{getBooksService,getBookByIdService,addBookService}
+const deleteBookService = async(id:string)=>{
+    const books = await findByIdAndDelete(Book, id);
+    return books;
+}
+export{getBooksService, getBookByIdService, addBookService, updateBookService, deleteBookService}

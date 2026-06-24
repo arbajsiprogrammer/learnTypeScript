@@ -16,10 +16,22 @@ const create = async <T>(modelName:Model<T>, body: Partial<T> )=>{
 
     const response = await modelName.create(body);
     return response;
-    
+}
+
+const findByIdAndUpdate = async <T>(modelName:Model<T>, body: Partial<T>,_id:string )=>{
+
+    const response = await modelName.findByIdAndUpdate(_id,body);
+    return response;
+
 }
 
 
+const findByIdAndDelete = async <T>(modelName:Model<T>,_id:string )=>{
+
+    const response = await modelName.findByIdAndDelete(_id);
+    return response;
+
+}
 
 
-export{find, findById, create}
+export{find, findById, create, findByIdAndUpdate, findByIdAndDelete}

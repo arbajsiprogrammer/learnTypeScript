@@ -4,6 +4,8 @@ import { successResponse,ISuccessResponse } from "../utils/response.util";
 import { addBookService, deleteBookService, getBookByIdService, getBooksService, updateBookService } from "../services/book.service";
 import { AsyncHandler } from "../utils/AsyncHandler.utils";
 import { IBook } from "../models/book.model";
+import { log } from "node:console";
+import { ApiError } from "../utils/ApiError";
 
 
 const getBooks = AsyncHandler(async(req:Request, res:Response)=>{
@@ -15,9 +17,14 @@ const getBooks = AsyncHandler(async(req:Request, res:Response)=>{
 })
 
 const getBookById = AsyncHandler(async(req:Request, res:Response)=>{
-    const id = req.params.bookId as string;
+    
+    const id = req.params.bookId ;
 
-    const book =await getBookByIdService(id);
+    if(!id){
+        throw new ApiError(400, "Book ID is required");
+    }
+
+    const book =await getBookByIdService(id as string);
 
     const response : ISuccessResponse = {res, statusCode:200, message:"book fetched", data: book}
 
